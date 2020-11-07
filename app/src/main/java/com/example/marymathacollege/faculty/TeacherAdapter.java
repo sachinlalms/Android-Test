@@ -1,13 +1,13 @@
 package com.example.marymathacollege.faculty;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +22,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
 
     private List<TeacherData> list;
     private Context context;
-    private String category;
+    private String category,name;
 
     public TeacherAdapter(List<TeacherData> list, Context context, String category) {
         this.list = list;
@@ -52,7 +52,15 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
         holder.update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Update Teacher", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,UpdateTeacherActivity.class);
+                intent.putExtra("name",item.getName());
+                intent.putExtra("email",item.getEmail());
+                intent.putExtra( "post",item.getPost());
+                intent.putExtra( "image",item.getImage());
+                intent.putExtra("key",item.getKey());
+                intent.putExtra("category",category);
+                context.startActivity(intent);
+
             }
         });
 

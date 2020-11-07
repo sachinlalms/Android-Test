@@ -105,7 +105,7 @@ public class UploadImage extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG,50,baos);
         byte[] finalimg = baos.toByteArray();
         final StorageReference filePath;
-        filePath = storageReference.child(finalimg+".jpg");
+        filePath = storageReference.child(finalimg+"jpg");
         final UploadTask uploadTask =filePath.putBytes(finalimg);
         uploadTask.addOnCompleteListener(UploadImage.this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override

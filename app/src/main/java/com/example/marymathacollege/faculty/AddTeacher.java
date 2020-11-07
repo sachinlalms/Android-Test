@@ -42,7 +42,7 @@ public class AddTeacher extends AppCompatActivity {
     private Spinner addTeachercategory;
     private Button addTeacherbtn;
     private final int REQ=1;
-    private String Category;
+    private String category;
     private String name,email,post, downloadurl = "";
     private ProgressDialog pd;
     private StorageReference storageReference;
@@ -63,12 +63,13 @@ public class AddTeacher extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         pd = new ProgressDialog(this);
 
-       String[] items = new String[]{"Select Department", "Computer Science", "Physics", "Chemistry", "Mathematics"};
+       String[] items = new String[]{"Select Department", "Computer Science", "Physics", "Chemistry", "Mathematics","Zoology","Commerce","English","Journalism","Political Science",
+       "Statistics","Biological Techniques","Hindi","Malayalam","Physical Education"};
         addTeachercategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
         addTeachercategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Category = addTeachercategory.getSelectedItem().toString();
+                category = addTeachercategory.getSelectedItem().toString();
 
             }
 
@@ -110,8 +111,8 @@ public class AddTeacher extends AppCompatActivity {
         }else if(post.isEmpty()){
             addTeacherPost.setError("Empty");
             addTeacherPost.requestFocus();
-        }else  if(Category.equals("Select Department")){
-            Toast.makeText(this, "Please Select Teacher Department", Toast.LENGTH_SHORT).show();
+        }else  if(category.equals("Select Category")){
+            Toast.makeText(this, "Please provide teacher category", Toast.LENGTH_SHORT).show();
         }else if(bitmap==null){
             insertData();
 
@@ -122,31 +123,6 @@ public class AddTeacher extends AppCompatActivity {
         }
     }
 
-    private void insertData() {
-
-
-            dbref = reference.child("Department");
-            final String uniquekey = dbref.push().getKey();
-
-            TeacherData teacherData = new TeacherData(name,email,post,downloadurl,uniquekey);
-
-            reference.child(uniquekey).setValue(teacherData).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    pd.dismiss();
-                    Toast.makeText(AddTeacher.this, "Teacher Added", Toast.LENGTH_SHORT).show();
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    pd.dismiss();
-                    Toast.makeText(AddTeacher.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-
-        }
 
 
 
@@ -182,6 +158,32 @@ public class AddTeacher extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void insertData() {
+
+
+        dbref = reference.child(category);
+        final String uniquekey = dbref.push().getKey();
+
+        TeacherData teacherData = new TeacherData(name,email,post,downloadurl,uniquekey);
+
+        dbref.child(uniquekey).setValue(teacherData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                pd.dismiss();
+                Toast.makeText(AddTeacher.this, "Teacher Added", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                Toast.makeText(AddTeacher.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
 

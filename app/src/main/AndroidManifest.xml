@@ -7,12 +7,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_mmcg"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_mmcg_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notice.DeleteNoticeActivity"></activity>
+        <activity android:name=".videos.UploadVideos"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ActivityLogin" />
+        <activity android:name=".UploadQuestions" />
+        <activity android:name=".notice.DeleteNoticeActivity" />
         <activity android:name=".faculty.UpdateTeacherActivity" />
         <activity android:name=".faculty.AddTeacher" />
         <activity android:name=".faculty.UpdateFaculty" />

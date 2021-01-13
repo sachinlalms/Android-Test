@@ -25,9 +25,9 @@ import java.util.List;
 public class UpdateFaculty extends AppCompatActivity {
 
     FloatingActionButton fab;
-    private RecyclerView csDept, phyDept, matDept, cheDept, zoDept, cDept, eDept, jDept, ptDept, pDept, sDept, mlDept, hDept, btDept;
-    private LinearLayout CsnoData, chenoData, matnoData, phynoData, zonoData, cnoData, enoData, jnoData, ptnoData, pnoData, snoData, mlnoData, hnoData, btnoData;
-    private List<TeacherData> list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, list11, list12, list13, list14;
+    private RecyclerView csDept, phyDept, matDept, cheDept, zoDept, cDept, eDept, jDept, ptDept, pDept, sDept, mlDept, hDept, btDept,prDept;
+    private LinearLayout CsnoData, chenoData, matnoData, phynoData, zonoData, cnoData, enoData, jnoData, ptnoData, pnoData, snoData, mlnoData, hnoData, btnoData,prnoData;
+    private List<TeacherData> list1, list2, list3, list4, list5, list6, list7, list8, list9, list10, list11, list12, list13, list14,list15;
     private DatabaseReference reference, dbref;
     private TeacherAdapter adapter;
 
@@ -37,6 +37,8 @@ public class UpdateFaculty extends AppCompatActivity {
         setContentView(R.layout.activity_update_faculty);
         cheDept = findViewById(R.id.cheDept);
         chenoData = findViewById(R.id.chenoData);
+        prDept = findViewById(R.id.prDept);
+        prnoData = findViewById(R.id.prnoData);
         matDept = findViewById(R.id.matDept);
         matnoData = findViewById(R.id.matnoData);
         phyDept = findViewById(R.id.phyDept);
@@ -79,6 +81,7 @@ public class UpdateFaculty extends AppCompatActivity {
         mlDept();
         hDept();
         btDept();
+        prDept();
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +91,40 @@ public class UpdateFaculty extends AppCompatActivity {
             }
         });
     }
+
+    private void prDept() {
+        dbref = reference.child("Principal");
+        dbref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list15 = new ArrayList<>();
+                if (!dataSnapshot.exists()) {
+                    prnoData.setVisibility(View.VISIBLE);
+                    prDept.setVisibility(View.GONE);
+                } else {
+
+                    prnoData.setVisibility(View.GONE);
+                    prDept.setVisibility(View.VISIBLE);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        TeacherData data = snapshot.getValue(TeacherData.class);
+                        list15.add(data);
+                    }
+                    prDept.setHasFixedSize(true);
+                    prDept.setLayoutManager(new LinearLayoutManager(UpdateFaculty.this));
+                    adapter = new TeacherAdapter(list15, UpdateFaculty.this, "Principal");
+                    prDept.setAdapter(adapter);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(UpdateFaculty.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
 
     private void btDept() {
         dbref = reference.child("Biological Techniques");

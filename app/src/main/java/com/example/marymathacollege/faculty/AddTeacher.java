@@ -64,7 +64,7 @@ public class AddTeacher extends AppCompatActivity {
         pd = new ProgressDialog(this);
 
        String[] items = new String[]{"Select Department", "Computer Science", "Physics", "Chemistry", "Mathematics","Zoology","Commerce","English","Journalism","Political Science",
-       "Statistics","Biological Techniques","Hindi","Malayalam","Physical Education"};
+       "Statistics","Biological Techniques","Hindi","Malayalam","Physical Education","Principal"};
         addTeachercategory.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items));
         addTeachercategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

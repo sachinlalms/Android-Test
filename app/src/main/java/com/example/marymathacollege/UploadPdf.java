@@ -129,10 +129,10 @@ public class UploadPdf extends AppCompatActivity {
     }
 
     private void openGallery() {
-       Intent intent = new Intent();
-       intent.setType("application/pdf");
-       intent.setAction(Intent.ACTION_GET_CONTENT);
-       startActivityForResult(Intent.createChooser(intent,"Select Pdf File"),REQ);
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Pdf File"),REQ);
     }
 
     @Override
@@ -157,7 +157,7 @@ public class UploadPdf extends AppCompatActivity {
 
                 pdfName=new File(pdfData.toString()).getName();
             }
-                pdftextview.setText(pdfName);
-            }
+            pdftextview.setText(pdfName);
+        }
     }
 }

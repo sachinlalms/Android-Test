@@ -32,7 +32,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class UploadImage extends AppCompatActivity {
+public class
+UploadImage extends AppCompatActivity {
 
     private Spinner imageCategory;
     private CardView selectImage;
@@ -43,6 +44,8 @@ public class UploadImage extends AppCompatActivity {
     private final int REQ = 1;
     private Bitmap bitmap;
     ProgressDialog pd;
+
+
 
     private DatabaseReference reference;
     private StorageReference storageReference;

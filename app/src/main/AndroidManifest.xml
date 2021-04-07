@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_mmcg_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".videos.UploadVideos"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ActivityLogin" />
+        <activity android:name=".videos.UploadVideos" />
         <activity android:name=".UploadQuestions" />
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".ActivityLogin"/>
         <activity android:name=".notice.DeleteNoticeActivity" />
         <activity android:name=".faculty.UpdateTeacherActivity" />
         <activity android:name=".faculty.AddTeacher" />

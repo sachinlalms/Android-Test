@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import com.example.marymathacollege.faculty.UpdateFaculty;
 import com.example.marymathacollege.notice.DeleteNoticeActivity;
 import com.example.marymathacollege.notice.UploadNotice;
+import com.example.marymathacollege.videos.UploadVideos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,10 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         name = findViewById(R.id.userName);
-        logout = findViewById(R.id.userlogout);
         mAuth=FirebaseAuth.getInstance();
+        logout = findViewById(R.id.userlogout);
 
         if(user!=null){
             name.setText(user.getDisplayName());
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
         uploadnotice.setOnClickListener(this);
         addgalleryimage.setOnClickListener(this);
         addebook.setOnClickListener(this);
@@ -75,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
     }
-
 
     @Override
     public void onClick(View view) {
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(MainActivity.this, UploadQuestions.class);
                 startActivity(intent);
                 break;
+
 
         }
 
